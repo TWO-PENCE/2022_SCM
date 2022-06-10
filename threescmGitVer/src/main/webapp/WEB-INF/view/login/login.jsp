@@ -1030,7 +1030,6 @@ function fSaveDataResult(data) {
 						id="EMP_PWD" name="pwd" placeholder="비밀번호"
 						onfocus="this.placeholder=''; return true"
 						onkeypress="if(event.keyCode==13) {fLoginProc(); return false;}" />
-						<!-- keycode 13은 엔터키다 -->
 				</p>
 				<p class="member_info" style="font-size: 15px">
 					<input type="checkbox" id="cb_saveId" name=""

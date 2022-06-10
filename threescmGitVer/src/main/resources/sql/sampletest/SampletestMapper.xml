@@ -6,69 +6,73 @@
    <!-- 목록 -->
    <select id="samplepage6list" resultType="kr.happyjob.study.sampletest.model.Sam6list">
             /*kr.happyjob.study.sampletest.dao.SampletestDao.samplepage6list*/
-         select ntc_no
-               ,loginID
-               ,ntc_title
-               ,ntc_content
-               ,DATE_FORMAT(ntc_regdate, '%Y-%m-%d') as ntc_regdate
-         from tb_notice
-       <where>
-         <if test="(searchword != null) and (!searchword.equals(''))">
-            <choose>
-               <when test="searchoption eq 'title'.toString()">
-                  and ntc_title Like CONCAT('%', #{searchword}, '%')
-               </when>
-               <when
-                  test="searchoption eq 'cont'.toString()">
-                  and ntc_content LIKE CONCAT('%', #{searchword}, '%')
-               </when>
-               <otherwise>
-                  and ( 
-                             ntc_title Like CONCAT('%', #{searchword}, '%')
-                         or ntc_content LIKE CONCAT('%', #{searchword}, '%')
-                        )   
-               </otherwise>
-            </choose>
-         </if>
-      </where>           
-        order by  ntc_regdate desc
-         limit #{pageindex}, #{pagesize}   
+			select ntc_no
+			      ,loginID
+			      ,ntc_title
+			      ,ntc_content
+			      ,DATE_FORMAT(ntc_regdate, '%Y-%m-%d') as ntc_regdate
+		   from tb_notice
+		 <where>
+			<if test="(searchword != null) and (!searchword.equals(''))">
+				<choose>
+					<when test="searchoption eq 'title'.toString()">
+						and ntc_title Like CONCAT('%', #{searchword}, '%')
+					</when>
+					<when
+						test="searchoption eq 'cont'.toString()">
+						and ntc_content LIKE CONCAT('%', #{searchword}, '%')
+					</when>
+					<otherwise>
+						and ( 
+						           ntc_title Like CONCAT('%', #{searchword}, '%')
+						       or ntc_content LIKE CONCAT('%', #{searchword}, '%')
+						      )   
+					</otherwise>
+				</choose>
+			</if>
+		</where>  		   
+		  order by  ntc_regdate desc
+			limit #{pageindex}, #{pagesize}	
      </select>
      
  <!-- 목록 -->
    <select id="samplepage6listtotcant" resultType="int">
             /*kr.happyjob.study.sampletest.dao.SampletestDao.samplepage6listtotcant*/
-         select count(ntc_no)
-         from tb_notice
-       <where>
-         <if test="(searchword != null) and (!searchword.equals(''))">
-            <choose>
-               <when test="searchoption eq 'title'.toString()">
-                  and ntc_title Like CONCAT('%', #{searchword}, '%')
-               </when>
-               <when
-                  test="searchoption eq 'cont'.toString()">
-                  and ntc_content LIKE CONCAT('%', #{searchword}, '%')
-               </when>
-               <otherwise>
-                  and ( 
-                             ntc_title Like CONCAT('%', #{searchword}, '%')
-                         or ntc_content LIKE CONCAT('%', #{searchword}, '%')
-                        )   
-               </otherwise>
-            </choose>
-         </if>
-      </where>         
+			select count(ntc_no)
+		   from tb_notice
+		 <where>
+			<if test="(searchword != null) and (!searchword.equals(''))">
+				<choose>
+					<when test="searchoption eq 'title'.toString()">
+						and ntc_title Like CONCAT('%', #{searchword}, '%')
+					</when>
+					<when
+						test="searchoption eq 'cont'.toString()">
+						and ntc_content LIKE CONCAT('%', #{searchword}, '%')
+					</when>
+					<otherwise>
+						and ( 
+						           ntc_title Like CONCAT('%', #{searchword}, '%')
+						       or ntc_content LIKE CONCAT('%', #{searchword}, '%')
+						      )   
+					</otherwise>
+				</choose>
+			</if>
+		</where>  		 
      </select>  
 
      <select id="samplepage6selectone"  resultType="kr.happyjob.study.sampletest.model.Sam6list">
           select ntc_no
-               ,loginID
-               ,ntc_title
-               ,ntc_content
-               ,DATE_FORMAT(ntc_regdate, '%Y-%m-%d') as ntc_regdate
-         from tb_notice
-       where ntc_no = #{no}
+			      ,loginID
+			      ,ntc_title
+			      ,ntc_content
+			      ,DATE_FORMAT(ntc_regdate, '%Y-%m-%d') as ntc_regdate
+			      ,file_name
+			      ,logical_path
+			      ,phygical_path
+			      ,file_size
+		   from tb_notice
+		 where ntc_no = #{no}
      </select>
                  
      <insert id="samplepage6insert">
@@ -83,12 +87,20 @@
                                        , ntc_content
                                        , loginID
                                        , ntc_regdate
+                                       ,file_name
+                                       ,logical_path
+                                       ,phygical_path
+                                       ,file_size
                                       ) values (
                                          #{no}
                                         ,#{title} 
                                         ,#{cont} 
                                         ,#{loginID} 
                                         ,NOW()
+                                       ,#{file_name}
+                                       ,#{logical_path}
+                                       ,#{phygical_path}
+                                       ,#{file_size}
                                       )
      </insert>
 
@@ -98,8 +110,15 @@
                     , ntc_content = #{cont} 
                    , loginID = #{loginID} 
                    , ntc_regdate = NOW()
+                   ,file_name = #{file_name} 
+                   ,logical_path = #{logical_path} 
+                   ,phygical_path = #{phygical_path} 
+                   ,file_size = #{file_size} 
              where  ntc_no = #{noticeno}     
      </update>
 
-
+     <delete id="samplepage6delete">
+            delete from tb_notice
+             where  ntc_no = #{noticeno}       
+     </delete>
 </mapper>

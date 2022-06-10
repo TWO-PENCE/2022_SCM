@@ -33,10 +33,39 @@ public class Sam6list {
 		this.ntc_regdate = ntc_regdate;
 	}
 	
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public String getLogical_path() {
+		return logical_path;
+	}
+	public void setLogical_path(String logical_path) {
+		this.logical_path = logical_path;
+	}
+	public String getPhygical_path() {
+		return phygical_path;
+	}
+	public void setPhygical_path(String phygical_path) {
+		this.phygical_path = phygical_path;
+	}
+	public int getFile_size() {
+		return file_size;
+	}
+	public void setFile_size(int file_size) {
+		this.file_size = file_size;
+	}
+	
 	private int ntc_no;
 	private String loginID;
 	private String ntc_title;
 	private String ntc_content;
 	private String ntc_regdate;
-	
+
+	private String file_name;
+	private String logical_path;
+	private String phygical_path;
+	private int file_size;
 }

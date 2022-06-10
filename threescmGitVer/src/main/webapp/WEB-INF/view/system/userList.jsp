@@ -11,7 +11,7 @@
 			</tr>
 		</c:if>
 		
-                         
+
 		<!-- 갯수가 있는 경우  -->
 		<c:if test="${totalCnt > 0 }">
 			<c:set var="nRow" value="${pageSize*(currentPage-1)}" /> 

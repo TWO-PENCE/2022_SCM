@@ -136,6 +136,8 @@ public class LoginController {
 	     session.setAttribute("userType", lgnInfoModel.getMem_author());            // 로그린 사용자 권란       A: 관리자       B: 기업회원    C:일반회원
 	     session.setAttribute("serverName", request.getServerName());
 	
+//	     String aaa = (String) session.getAttribute("loginId"); 세션 꺼내기 
+	     
 	     resultMap.put("loginId",lgnInfoModel.getLgn_id()); 
 	     resultMap.put("userNm",lgnInfoModel.getUsr_nm()); 
 	     resultMap.put("usrMnuAtrt", listUsrMnuAtrtModel);
